@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.sights.SightsOrderMapper">
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache" /> -->
+	<resultMap type="SightsOrder" id="sightsOrderMap">
+		<association property="sights" foreignColumn="sights_id"
+			column="sights_id" select="com.ssm.mapper.sights.SightsMapper.selectById">
+		</association>
+	</resultMap>
+
+	<insert id="add" parameterType="SightsOrder">
+		insert into travel_sights_orders
+		values(#{id,jdbcType=NUMERIC},#{code,jdbcType=VARCHAR},#{createtime},#{adults,jdbcType=NUMERIC},#{children,jdbcType=NUMERIC},#{students,jdbcType=NUMERIC},#{usetime},
+		#{sights.id,jdbcType=NUMERIC},#{user.id,jdbcType=NUMERIC},#{account,jdbcType=NUMERIC},'0','0')
+	</insert>
+	
+	<delete id="delete" parameterType="Integer">
+		update travel_sights_orders set delflag='1' where id=#{id}
+	</delete>
+	
+	<update id="update" parameterType="SightsOrder">
+		update travel_sights_orders
+		<set>
+			<if test="adults !=null">
+				adults=#{adults},
+			</if>
+			<if test="children !=null">
+				children=#{children},
+			</if>
+			<if test="students !=null">
+				students=#{students},
+			</if>
+			<if test="usetime !=null">
+				usetime=#{usetime},
+			</if>
+			<if test="payStatus !=null">
+				paystatus=#{payStatus}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<select id="selectById" parameterType="Integer" resultMap="sightsOrderMap">
+		select * from travel_sights_orders where id=#{id} and delflag='0'
+	</select>
+	
+	<select id="querySightsOrderListByCondition" parameterType="SightsOrderVo"
+		resultMap="sightsOrderMap">
+		select * from travel_sights_orders tos
+		<where>
+			delflag='0'
+			<if test="sightsOrder !=null and sightsOrder.createtime !=null and sightsOrder.createtime !=''">
+				and tos.createtime like '%${sightsOrder.createtime}%'
+			</if>
+		</where>
+		order by id
+	</select>
+	
+	<select id="selectLastId" resultType="AutoId">
+		select * from travel_sights_autoid where note='唯一id'
+	</select>
+	
+	<update id="updateLastId" parameterType="Integer">
+		update travel_sights_autoid set autoid=#{autoid} where note='唯一id'
+	</update>
+	
+</mapper>

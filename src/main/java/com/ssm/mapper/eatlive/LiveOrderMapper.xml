@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射配置 -->
+<mapper namespace="com.ssm.mapper.eatlive.LiveOrderMapper">
+
+	
+	<!-- 插入操作 -->
+	<insert id="insertLiveOrder" parameterType="LiveOrder">
+		insert into live_order(id, ordernum, livename, roomtype, username, tel, idcard, livenum, checkintime, checkouttime,require) 
+			values(live_order_id.nextval, #{ordernum}, #{livename}, #{roomtype}, #{username}, #{tel}, #{idcard}, #{livenum}, #{checkintime}, #{checkouttime},
+			#{require})
+	</insert>
+	
+	<!-- 更改操作 -->
+	<!-- <update id="updateFilm" parameterType="java.lang.Integer">
+		update ssm_film
+		<set>
+			<if test="filmname != null">
+				filmname = #{filmname},
+			</if>
+			<if test="years != null">
+				years = #{years},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="language != null">
+				language = #{language},
+			</if>
+			<if test="captions != null">
+				captions = #{captions},
+			</if>
+			<if test="director != null">
+				director = #{director},
+			</if>
+			<if test="actor != null">
+				actor = #{actor},
+			</if>
+			<if test="showtime != null">
+				showtime = #{showtime},
+			</if>
+			<if test="playhall != null">
+				playhall = #{playhall},
+			</if>
+			<if test="playtime != null">
+				playtime = #{playtime},
+			</if>
+			<if test="description != null">
+				description = #{description},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	批量删除
+	<update id="batchDeleteFilms" parameterType="java.lang.Integer">
+		update ssm_film set delFlag = '1' where id in
+		<foreach collection="array" item="filmId" open="(" separator="," close=")">
+			#{filmId}
+		</foreach>
+	</update> -->
+	
+</mapper>

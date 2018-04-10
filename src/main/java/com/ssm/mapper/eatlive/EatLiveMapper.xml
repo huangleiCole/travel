@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射配置 -->
+<mapper namespace="com.ssm.mapper.eatlive.EatLiveMapper">
+
+	<!-- 映射selectEat方法的sql -->
+	<select id="selectEatAndLive" parameterType="Integer" resultType="EatLive">
+		<!-- 方法要执行的sql -->
+		select * from travle_accommodation where type = #{type}
+	</select>
+	
+	<!-- 映射selectEat方法的sql -->
+	<select id="selectEatLive" parameterType="Integer" resultType="EatLive">
+		<!-- 方法要执行的sql -->
+		select * from travle_accommodation where id = #{id}
+	</select>
+	
+	
+	<!-- 查询餐饮记录数 -->
+	<select id="selectAllEat" resultType="Integer">
+		<!-- 方法要执行的sql -->
+		select count(1) from travle_accommodation where type = '0'
+	</select>
+	
+	<!-- 查询住宿记录数 -->
+	<select id="selectAllLive" resultType="Integer">
+		<!-- 方法要执行的sql -->
+		select count(1) from travle_accommodation where type = '1'
+	</select>
+	
+	<!-- 查询指定城市记录数 -->
+	<select id="selectAllCity" resultType="Integer" parameterType="String">
+		<!-- 方法要执行的sql -->
+		select count(1) from travle_accommodation where city = #{city }
+	</select>
+	
+	<!-- 查询餐饮分页 -->
+	<select id="selectListEatByPage" parameterType="FilmVo" resultType="EatLive">
+	select * from (select t.*,rownum rn from travle_accommodation t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="eatlive != null and eatlive.name != null and eatlive.name != ''">
+			and t.name like '%${eatlive.name}%' 
+		</if>
+		and type = '0') a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	
+	<!-- 查询住宿分页 -->
+	<select id="selectListLiveByPage" parameterType="FilmVo" resultType="EatLive">
+	select * from (select t.*,rownum rn from travle_accommodation t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="eatlive != null and eatlive.name != null and eatlive.name != ''">
+			and t.name like '%${eatlive.name}%' 
+		</if>
+		and type = '1') a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	
+	<!-- 查询餐饮住宿分页 -->
+	<select id="selectListByPage" parameterType="FilmVo" resultType="EatLive">
+	select * from (select t.*,rownum rn from travle_accommodation t 
+	<where>
+		 rownum &lt;= (#{currentPage} * #{pageCount})  
+		 <if test="eatlive != null and eatlive.name != null and eatlive.name != ''">
+			and t.name like '%${eatlive.name}%' 
+		</if>
+		<if test="eatlive != null and eatlive.type != null">
+			and t.type = #{eatlive.type}
+		</if>
+		<if test="eatlive != null and eatlive.city != null">
+			and t.city = #{eatlive.city}
+		</if>
+		<if test="eatlive != null and eatlive.lv != null">
+			and t.lv like '%${eatlive.lv}%'
+		</if>
+		) a
+	</where>
+			where a.rn > (#{currentPage} - 1) * #{pageCount}
+	</select>
+	
+</mapper>

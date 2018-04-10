@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.user.AddressMapper">
+	<insert id="insert" parameterType="Address">
+		insert into travel_address
+		values(travel_address_id.nextval,#{username},#{postcode},#{mobilephone,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{detail},#{user.id})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from travel_address where id = #{id}
+	</delete>
+	<update id="update" parameterType="int">
+		update travel_address
+		<set>
+			<if test="username!=null">
+				username=#{username} ,
+			</if>
+			<if test="postcode!=null">
+				postcode=#{postcode},
+			</if>
+			<if test="mobilephone!=null">
+				mobilephone=#{mobilephone},
+			</if>
+			<if test="phone!=null">
+				phone=#{phone},
+			</if>
+			<if test="detail!=null">
+				detail=#{detail}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<select id="selectAllByUserId" resultType="Address">
+	select * from travel_address where user_id = #{id}
+	</select>
+	<select id="selectById" resultType="Address">
+	select * from travel_address where user_id = #{id}
+	</select>
+</mapper>

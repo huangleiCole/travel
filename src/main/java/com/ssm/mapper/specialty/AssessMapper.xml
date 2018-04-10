@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.specialty.AssessMapper">
+	
+	<resultMap type="Assess" id="assessMap">
+		<id column="id" property="id" />
+		<association property="user" column="user_id" foreignColumn="user_id"
+			select="com.ssm.mapper.user.UserMapper.selectUser">
+		</association>
+		
+		<!-- <association property="specialty" column="specialty_id" foreignColumn="specialty_id"
+			select="com.ssm.mapper.specialty.SpecialtyMapper.selectById">
+		</association> -->
+		
+	</resultMap>
+
+  <select id="selectBySpecialtyId" parameterType="Integer"  resultMap="assessMap">
+  select * from tbl_assess where specialty_id = #{id}
+  </select>
+  
+  <select id="getById" parameterType="Integer"  resultMap="assessMap">
+  select * from tbl_assess where id = #{id}
+  </select>
+  
+  <select id="getByUserId" parameterType="int"   resultMap="assessMap">
+  select * from tbl_assess where  user_id= #{user.id}
+  </select>
+  
+  <insert id="saveAssess" parameterType="com.ssm.entity.specialty.Assess">
+  	insert into tbl_assess values(tbl_assess_id.nextval,#{levell,jdbcType=VARCHAR},#{content,jdbcType=VARCHAR},
+  	#{user.id,jdbcType=INTEGER},#{specialty.id,jdbcType=INTEGER})
+  </insert>
+ 
+</mapper>

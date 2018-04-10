@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射配置 -->
+<mapper namespace="com.ssm.mapper.eatlive.CityMapper">
+
+	<!-- 映射selectCityByNum方法的sql -->
+	<select id="selectCityByNum" parameterType="String" resultType="String">
+		<!-- 方法要执行的sql -->
+		select cityname from travel_city where citynum = #{citynum}
+	</select>
+	
+	<!-- 映射selectAllCity方法的sql -->
+	<select id="selectAllCity" resultType="City">
+		<!-- 方法要执行的sql -->
+		select * from travel_city
+	</select>
+	
+</mapper>

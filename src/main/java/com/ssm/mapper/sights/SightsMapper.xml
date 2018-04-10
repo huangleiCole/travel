@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.sights.SightsMapper">
+	<!-- <cache type="org.mybatis.caches.ehcache.EhcacheCache" /> -->
+	<resultMap type="Sights" id="sightsMap">
+		<result column="level1" property="level" />
+	</resultMap>
+
+	<insert id="add" parameterType="Sights">
+		insert into travel_sights
+		values(travel_sights_id.nextval,#{image,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{detail,jdbcType=VARCHAR},#{location,jdbcType=VARCHAR},
+		#{time,jdbcType=VARCHAR},#{oldPrice},#{discount},#{newPrice},#{ticket,jdbcType=VARCHAR},#{buyNum},#{phone,jdbcType=VARCHAR},#{tips,jdbcType=VARCHAR},#{type,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler,jdbcType=NUMERIC},
+		#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{notes,jdbcType=VARCHAR},'0')
+	</insert>
+
+	<delete id="delete" parameterType="Integer">
+		update travel_sights set
+		delflag='1' where id=#{id}
+	</delete>
+
+	<update id="update" parameterType="Sights">
+		update travel_sights
+		<set>
+			<if test="image !=null">
+				image=#{image},
+			</if>
+			<if test="name !=null">
+				name=#{name},
+			</if>
+			<if test="detail !=null">
+				detail=#{detail},
+			</if>
+			<if test="location !=null">
+				location=#{location},
+			</if>
+			<if test="time !=null">
+				time=#{time},
+			</if>
+			<if test="oldPrice !=null">
+				oldPrice=#{oldPrice},
+			</if>
+			<if test="discount !=null">
+				discount=#{discount},
+			</if>
+			<if test="newPrice !=null">
+				newprice=#{newPrice},
+			</if>
+			<if test="ticket !=null">
+				ticket=#{ticket},
+			</if>
+			<if test="buyNum !=null">
+				buynum=#{buyNum},
+			</if>
+			<if test="phone !=null">
+				phone=#{phone},
+			</if>
+			<if test="tips !=null">
+				tips=#{tips},
+			</if>
+			<if test="type !=null">
+				type=#{type},
+			</if>
+			<if test="level !=null">
+				level1=#{level},
+			</if>
+			<if test="grade !=null">
+				grade=#{grade},
+			</if>
+			<if test="notes !=null">
+				notes=#{notes}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<select id="selectById" parameterType="Integer" resultMap="sightsMap">
+		select * from travel_sights t where id=#{id} and delflag='0'
+	</select>
+	
+	<select id="selectCountByCondition" resultType="int" parameterType="SightsVo">
+		select count(*) from travel_sights s
+		<if test="sights !=null and sights.location !=null and sights.location !='' ">
+			where s.location like '%${sights.location}%'
+		</if>
+	</select>
+
+	<select id="querySightsListByCondition" parameterType="SightsVo"
+		resultMap="sightsMap">
+		select * from travel_sights t
+		<where>
+			delflag='0'
+			<if test="sights !=null and sights.name !=null and sights.name !=''">
+				and t.name like '%${sights.name}%'
+			</if>
+		</where>
+		order by id
+	</select>
+	
+	<select id="selectSightsListByPage" parameterType="SightsVo" resultMap="sightsMap">
+		select * from (select s.*,rownum rn from travel_sights s
+		<where>
+			rownum &lt;=(#{currentPage}*#{pageCount})
+			<if test="sights !=null and sights.location !=null and sights.location !=''">
+				and s.location like '%${sights.location}%'
+			</if>
+			) a
+		</where>
+		where a.rn>(#{currentPage}-1)*#{pageCount}
+	</select>
+	
+	<select id="selectSightsByLocation" parameterType="SightsVo" resultMap="sightsMap">
+		select * from travel_sights s
+		<where>
+			<if test="sights !=null and sights.location !=null and sights.location !=''">
+				s.location like '%${sights.location}%'
+			</if>
+		</where>
+	</select>
+
+</mapper>

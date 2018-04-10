@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.route.RouteDayMapper">
+	<resultMap type="RouteDay" id="roudayMap">
+		<id column="id" property="id"/>
+		<result column="day" property="day"/>
+		<result column="startplace" property="startPlace"/>
+		<result column="endplace" property="endPlace"/>
+		<result column="spotname" property="spotName"/>
+		<result column="introduce" property="introduce"/>
+		<result column="image" property="image"/>
+	</resultMap>
+	<select id="selectRouteDayByRouId" parameterType="int" resultMap="roudayMap">
+		select r.* from travel_routeday r where r.route_id=#{route.id} order by r.day
+	</select>
+</mapper>

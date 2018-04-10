@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.route.RouteMapper">
+	<resultMap type="Route" id="routeMap">
+		<id column="id" property="id"/>
+		<result column="image" property="image"/>
+		<result column="routenumber" property="routeNumber"/>
+		<result column="routename" property="routeName"/>
+		<result column="startplace" property="startPlace"/>
+		<result column="endplace" property="endPlace"/>
+		<result column="startplace" property="startPlace"/>
+		<result column="oldprice" property="oldPrice"/>
+		<result column="discount" property="discount"/>
+		<result column="newprice" property="newPrice"/>
+		<result column="starttime" property="startTime"/>
+		<result column="endtime" property="endTime"/>
+		<result column="betweentime" property="betweenTime"/>
+		<result column="comments" property="comments"/>
+		<result column="purchasepeople" property="purchasePeople"/>
+		<collection property="routeDays" fetchType="lazy" ofType="RouteDay"
+		select="com.ssm.mapper.route.RouteDayMapper.selectRouteDayByRouId" column="id"></collection>
+	</resultMap>
+	<cache></cache>
+	<select id="selectAll" resultMap="routeMap">
+		select r.* from travel_route r
+	</select>
+	<select id="selectRouteById" parameterType="int" resultMap="routeMap">
+		select r.* from travel_route r where r.id=#{id}
+	</select>
+	<select id="selectCountByCondition" resultType="int" parameterType="RouteVo">
+		select count(*) from travel_route 
+	</select>
+	<select id="selectListByPage" parameterType="RouteVo" resultMap="routeMap">
+		select * from(select r.*,rownum rn from travel_route r where rownum &lt;=
+		#{currentPage}*#{pageCount}) a where a.rn > (#{currentPage}-1)*#{pageCount}
+	</select>
+</mapper>

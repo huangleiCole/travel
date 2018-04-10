@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 映射配置 -->
+
+<mapper namespace="com.ssm.mapper.specialty.SpecialtyOrderMapper">
+	
+	<insert id="saveSpecialtyOrder" parameterType="com.ssm.entity.specialty.SpecialtyOrder">
+		insert into tbl_specialtyOrder(id,speName,specialtyOrderId,radio,preferentialPrice,integral
+		,quantity,preferential,toal,state,NopayOrderDate,user_id,specialty_id) 
+			values(tbl_specialtyOrder_id.nextval, 
+			#{speName,jdbcType=VARCHAR},
+			#{specialtyOrderId,jdbcType=INTEGER},#{radio,jdbcType=VARCHAR},
+			#{preferentialPrice,jdbcType=INTEGER},#{integral,jdbcType=INTEGER},#{quantity,jdbcType=INTEGER}
+			,#{preferential,jdbcType=INTEGER},#{toal,jdbcType=INTEGER},
+			#{state,jdbcType=INTEGER},#{NopayOrderDate,jdbcType=DATE},#{user.id,jdbcType=INTEGER},#{specialty.id,jdbcType=INTEGER}
+			)
+	</insert>
+	
+	
+	<!-- 映射selectById方法的sql -->
+	<select id="selectById"  parameterType="long" resultType="SpecialtyOrder">
+		<!-- 方法要执行的sql -->
+		select * from tbl_specialtyOrder where specialtyOrderId = #{specialtyOrderId}
+	</select>
+	
+	<!-- 映射selectById方法的sql -->
+	<select id="selectBySpecialtyOrderId"  parameterType="int" resultType="SpecialtyOrder">
+		<!-- 方法要执行的sql -->
+		select * from tbl_specialtyOrder where id = #{id}
+	</select>
+	
+	<update id="updateByUserId" parameterType="SpecialtyOrder">
+		update tbl_specialtyOrder
+		<set>
+			<if test="speName!=null">
+				speName=#{speName} ,
+			</if>
+			<if test="radio!=null">
+				radio=#{radio},
+			</if>
+			<if test="state!=null">
+				state=#{state}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.user.UserMapper">
+			
+	<!-- <resultMap type="User" id="userMap">
+		<id column="id" property="id" />
+		<collection property="assess" column="assess_id"
+			select="com.ssm.mapper.AssessMapper.getByUserId">
+		</collection>
+	</resultMap> -->
+	
+
+	<select id="selectUser" parameterType="int" resultType="user">
+		select * from travel_user where id=#{id}
+	</select>
+	<select id="selectUserByUserName" parameterType="String"
+		resultType="User">
+		select * from travel_user where username = #{username}
+	</select>
+	<insert id="insertUser" parameterType="User">
+		insert into travel_user
+		values(travel_user_id.nextval,#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{repassword,jdbcType=VARCHAR},#{identifiyingcode,jdbcType=VARCHAR},#{type,jdbcType=INTEGER})
+	</insert>
+	
+	<update id="updateUser" parameterType="User">
+		update travel_user u
+		<set>
+			<if test="username!=null">
+				u.username = #{username},
+			</if>
+			<if test="password!=null">
+				u.password = #{password},
+			</if>
+			<if test="repassword!=null">
+				u.repassword = #{repassword},
+			</if>
+			<if test="identifiyingcode!=null">
+				u.identifiyingcode =#{identifiyingcode},
+			</if>
+			<if test="type!=null">
+				u.type =#{type}
+			</if>
+		</set>
+		where u.id=#{id}
+	</update>
+
+</mapper>
