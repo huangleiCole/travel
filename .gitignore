@@ -1,7 +1,7 @@
 /target/
-<<<<<<< HEAD
+
 
 /.settings/
-=======
-/.settings/
->>>>>>> 67b83c26645ec24b5fbd6cb0a8d25d6aaa8bd5c9
+/.classpath
+/.project
+
