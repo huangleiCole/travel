@@ -1,5 +1,7 @@
 package com.ssm.entity.specialty;
 
+import java.io.Serializable;
+
 import com.ssm.entity.user.User;
 
 import lombok.Data;
@@ -11,8 +13,13 @@ import lombok.Data;
 * 地方特色订单用户评价类
 */
 @Data
-public class Assess {
+public class Assess implements Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private  Integer id; //评价ID
 	
     private String levell;//评价等级

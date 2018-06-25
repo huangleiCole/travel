@@ -1,5 +1,6 @@
 package com.ssm.entity.specialty;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,7 +15,12 @@ import lombok.Data;
  * @describe
  */
 @Data
-public class SpecialtyOrder {
+public class SpecialtyOrder implements Serializable  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 

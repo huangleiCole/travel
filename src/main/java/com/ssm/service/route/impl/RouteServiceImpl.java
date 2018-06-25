@@ -25,11 +25,11 @@ public class RouteServiceImpl implements RouteService{
 	}
 	@Override
 	public PageBean<Route> queryRouteByCondition(Integer currentPage, Integer size, RouteVo routeVo) {
-		routeVo.setCurrentPage(currentPage);
+		routeVo.setCurrentPage((currentPage-1)*size);
 		routeVo.setPageCount(size);
 		int count = routeMapper.selectCountByCondition(routeVo);
 		List<Route> routes = routeMapper.selectListByPage(routeVo);
-		PageBean<Route> pageBean = new PageBean<>(count, size);
+		PageBean<Route> pageBean = new PageBean<>(currentPage, size);
 		pageBean.setCurrent(currentPage);
 		pageBean.setDatas(routes);
 		return pageBean;

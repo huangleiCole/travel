@@ -1,5 +1,7 @@
 package com.ssm.entity.eatlive;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 /**
@@ -9,7 +11,14 @@ import lombok.Data;
  * @date: 2018年3月24日 下午10:40:52
  */
 @Data
-public class City {
+public class City implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
 	private Integer id;
 	private String citynum;
 	private String cityname;
