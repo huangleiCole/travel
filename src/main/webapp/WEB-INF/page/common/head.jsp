@@ -11,7 +11,7 @@
 	<div class="top_hw clearfix">
 		<div class="top_h clearfix">
 			<div class="top_hl">
-				<span>欢迎来到江苏梦想游，让你的梦想全程免费自由行！</span> 预定热线：<b>0571-63322269</b>
+				<span>欢迎来到江苏梦想游，让你的梦想全程免费自由行！</span> 
 			</div>
 			<div class="top_hr">
 			<c:if test="${empty user }" var="hasUser">

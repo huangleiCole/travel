@@ -24,7 +24,7 @@ public class HomePageController {
 	public String begin(Model model,RouteVo routeVo,SpecialtyVo specialtyVo) throws Exception{
 		PageBean<Route> pageBean1 = routeService.queryRouteByCondition(1, 4, routeVo);
 		PageBean<Specialty> pageBean2 = specialtySerive.queryFilmByCondition(1, 8, specialtyVo);
-		pageBean2.getDatas().forEach(System.out::println);
+		//pageBean2.getDatas().forEach(System.out::println);
 		model.addAttribute("page1", pageBean1);
 		model.addAttribute("page2", pageBean2);
 		return "index";	

@@ -25,7 +25,7 @@ public class UserController {
 
 	@RequestMapping("/login")
 	public String login() throws Exception {
-		return "user/login";
+		return "user/login1";
 
 	}
 
@@ -40,7 +40,7 @@ public class UserController {
 	@RequestMapping("/loginout")
 	public String loginout(HttpSession session, User user) throws Exception {
 		session.removeAttribute("user");
-		return "user/login";
+		return "redirect:login";
 	}
 
 	@RequestMapping("/register")
@@ -51,7 +51,7 @@ public class UserController {
 	@RequestMapping("/registers")
 	public String registers(User user) {
 		userService.register(user);
-		return "user/login";
+		return "redirect:login";
 	}
 
 	@RequestMapping("/updatepassword")
@@ -66,7 +66,7 @@ public class UserController {
 		int id = (Integer) session.getAttribute("id");
 		user.setId(id);
 		userService.updatepassword(user);
-		return "user/login";
+		return "redirect:login";
 	}
 
 	@RequestMapping("/show")

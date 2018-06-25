@@ -1,5 +1,6 @@
 package com.ssm.entity.specialty;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,12 @@ import lombok.Data;
  * @describe
  */
 @Data
-public class Specialty {
+public class Specialty implements Serializable  {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
 

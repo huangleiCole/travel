@@ -37,7 +37,7 @@ public class SpecialtyServiceImpl implements SpecialtySerive {
 		// 获取记录总数
 		int count = specialtyMapper.selectCountByCondition(specialtyVo);
 		// 获取list集合
-		specialtyVo.setCurrentPage(currentPage);
+		specialtyVo.setCurrentPage((currentPage-1)*size);
 		specialtyVo.setPageCount(size);
 		List<Specialty> filmList = specialtyMapper.selectListByPage(specialtyVo);
 		PageBean<Specialty> pageBean = new PageBean<>(count, size);

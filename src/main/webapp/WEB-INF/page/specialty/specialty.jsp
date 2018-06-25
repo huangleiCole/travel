@@ -335,11 +335,12 @@
 		<div class="clumn_w clearfix">
 			<div class="clumn_l">
 				<div class="clumn">
-					<div class="clumn_tit t01">餐饮住宿</div>
+					<div class="clumn_tit t01">地方特产</div>
 					<div style="height: 760.6px" class="clumn_con">
 					<form action="${path }/Specialty/getFilmData" class="bs-example bs-example-form" role="form" method="post" >
 						<input type="hidden" id="region">
 						<div class="cln_w">
+							<h5 class="cln_c clearfix"><a href="javascript:;" onclick="query()">所有特产</a></h5>
 							<p>常州市</p>
 							<div class="cln_c clearfix">
 								<a href="javascript:;" onclick="query(0)">钟楼特产</a> <a href="javascript:;" onclick="query(1)">武进特产</a> <a href="javascript:;" onclick="query(2)">新北特产</a> <a

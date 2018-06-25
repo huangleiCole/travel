@@ -97,7 +97,8 @@
 	</select>
 	
 	<select id="selectSightsListByPage" parameterType="SightsVo" resultMap="sightsMap">
-		select * from (select s.*,rownum rn from travel_sights s
+		<!-- oracle实现sql -->
+		<!-- select * from (select s.*,rownum rn from travel_sights s
 		<where>
 			rownum &lt;=(#{currentPage}*#{pageCount})
 			<if test="sights !=null and sights.location !=null and sights.location !=''">
@@ -105,7 +106,15 @@
 			</if>
 			) a
 		</where>
-		where a.rn>(#{currentPage}-1)*#{pageCount}
+		where a.rn>(#{currentPage}-1)*#{pageCount} -->
+		
+		<!-- mysql实现sql -->
+		select s.* from travel_sights s 
+			<if test="sights !=null and sights.location !=null and sights.location !=''">
+				where s.location like '%${sights.location}%'
+			</if>
+		limit #{currentPage} , #{pageCount}
+			
 	</select>
 	
 	<select id="selectSightsByLocation" parameterType="SightsVo" resultMap="sightsMap">

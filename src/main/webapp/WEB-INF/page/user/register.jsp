@@ -58,7 +58,7 @@
 					</div>
 					<div class="tab_box">
 						<div class="regin_tw">
-							<form id="form1" action="${path }/user/registers">
+							<form id="form1" method="post" action="${path }/user/registers">
 							
 								<table width="650" border="0" cellspacing="0" cellpadding="0">
 
@@ -67,7 +67,7 @@
 									<tr class="form-group">
 										<td width="62">用户名：</td>
 										<td width="588"><input class="rg_in" type="text"
-											name="user1name" value=""></td>
+											name="username" value=""></td>
 									</tr>
 									<tr>
 										<td>手机号码：</td>

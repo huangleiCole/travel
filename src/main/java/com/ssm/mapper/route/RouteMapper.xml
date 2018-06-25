@@ -31,7 +31,11 @@
 		select count(*) from travel_route 
 	</select>
 	<select id="selectListByPage" parameterType="RouteVo" resultMap="routeMap">
-		select * from(select r.*,rownum rn from travel_route r where rownum &lt;=
-		#{currentPage}*#{pageCount}) a where a.rn > (#{currentPage}-1)*#{pageCount}
+		<!-- oracle实现sql -->
+		<!-- select * from(select r.*,rownum rn from travel_route r where rownum &lt;=
+		#{currentPage}*#{pageCount}) a where a.rn > (#{currentPage}-1)*#{pageCount} -->
+		
+		<!-- mysql实现sql -->
+		select r.* from travel_route r limit #{currentPage},#{pageCount}
 	</select>
 </mapper>

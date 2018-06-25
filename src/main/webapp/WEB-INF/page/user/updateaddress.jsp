@@ -48,7 +48,7 @@
         	<div class="fmr1">
             	<div class="fmr1_top">配送地址</div>
                 <div class="fmr1_m">
-                <form action="${path }/updateaddressS" method="post">
+                <form action="${path }/user/updateaddressS" method="post">
                  <input type="hidden" name="id" value="${address.id }">
                     	<table border="0" cellpadding="0" cellspacing="0" width="638">
                     	<tr>

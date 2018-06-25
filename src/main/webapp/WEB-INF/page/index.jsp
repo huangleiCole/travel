@@ -312,14 +312,14 @@ window.onload=function(){
             </div>
           </div>
     </div>
-<div class="add_01"><center><img src="${path }/images/add00.jpg"></center></div>
+<%-- <div class="add_01"><center><img src="${path }/images/add00.jpg"></center></div> --%>
     <div class="clumn_w clearfix">
         <div class="clumn_cl">
             <div class="mf_box">
           <div class="mf_tit clearfix">
             <span>免费路线</span>
           	  <div class="mf_tm">
-              <a href="${path }/route/routeList">更多美景>></a>
+              <a href="${path }/route/routeList">更多路线>></a>
             </div>
           </div>
           <div class="js_wrap claerdix">
