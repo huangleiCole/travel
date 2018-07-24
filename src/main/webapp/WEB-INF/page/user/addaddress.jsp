@@ -49,7 +49,7 @@
         	<div class="fmr1">
             	<div class="fmr1_top">配送地址</div>
                 <div class="fmr1_m">
-                <form action="${path }/addaddressS" method="post">
+                <form action="${path }/user/addaddressS" method="post">
                     	<table border="0" cellpadding="0" cellspacing="0" width="638">
                         	<tr>
                             	<td width="60" align="left" height="30">收件人：</td>

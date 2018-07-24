@@ -27,7 +27,7 @@
 	<!-- 映射selectByOrigin方法的sql -->
 	<select id="selectByOrigin"  parameterType="String" resultType="Specialty">
 		<!-- 方法要执行的sql -->
-		select * from tbl_specialty where Origin = #{Origin}
+		select * from tbl_specialty where origin = #{origin}
 	</select>
 	
 	<!-- 查询总记录数 -->
@@ -35,8 +35,8 @@
 		select count(1) from tbl_specialty f 
 		<where>
 			
-			<if test="specialty != null and specialty.Origin != null and specialty.Origin != ''">
-				 f.Origin = #{specialty.Origin}
+			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				 f.Origin = #{specialty.origin}
 			</if>
 		</where>
 	</select>
@@ -46,8 +46,8 @@
 	select * from (select t.*,rownum rn from tbl_specialty t  
 		<where>
 			 rownum &lt;= (#{currentPage} * #{pageCount})
-			<if test="specialty != null and specialty.Origin != null and specialty.Origin != ''">
-				and t.Origin = #{specialty.Origin} 
+			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				and t.Origin = #{specialty.origin} 
 			</if>
 			) a
 		</where>
@@ -60,8 +60,8 @@
 		select * from tbl_specialty f
 		<where>
 			
-			<if test="specialty != null and specialty.Origin != null and specialty.Origin != ''">
-				 f.Origin = #{specialty.Origin}
+			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				 f.Origin = #{specialty.origin}
 			</if>
 		</where>
 	</select>
