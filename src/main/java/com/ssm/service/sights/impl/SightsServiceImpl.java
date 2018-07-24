@@ -56,7 +56,7 @@ public class SightsServiceImpl implements SightsService {
 
 	@Override
 	public PageBean<Sights> querySightsPageByCondition(Integer currentPage, Integer size, SightsVo sightsVo) {
-		sightsVo.setCurrentPage(currentPage);
+		sightsVo.setCurrentPage((currentPage-1)*size);
 		sightsVo.setPageCount(size);
 		int count = sightsMapper.selectCountByCondition(sightsVo);
 		List<Sights> sights = sightsMapper.selectSightsListByPage(sightsVo);

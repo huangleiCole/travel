@@ -5,45 +5,54 @@
 <!-- 映射配置 -->
 
 <mapper namespace="com.ssm.mapper.specialty.SpecialtyMapper">
-	
+
 	<resultMap type="Specialty" id="specialtyMap">
 		<id column="id" property="id" />
-		<collection property="assesslist"  column="id"
-			select="com.ssm.mapper.specialty.AssessMapper.selectBySpecialtyId" >
+		<collection property="assesslist" column="id"
+			select="com.ssm.mapper.specialty.AssessMapper.selectBySpecialtyId">
 		</collection>
-		
+
 	</resultMap>
-	
+
 	<!-- 映射getAllSpecialtys方法的sql -->
-	<select id="getAllSpecialtys"  resultType="Specialty">
+	<select id="getAllSpecialtys" resultType="Specialty">
 		<!-- 方法要执行的sql -->
 		select * from tbl_specialty
 	</select>
 	<!-- 映射selectById方法的sql -->
-	<select id="selectById"  parameterType="Integer" resultMap="specialtyMap">
+	<select id="selectById" parameterType="Integer" resultMap="specialtyMap">
 		<!-- 方法要执行的sql -->
-		select c.* from tbl_specialty c where  c.id = #{id}
+		select c.* from tbl_specialty c where c.id = #{id}
 	</select>
 	<!-- 映射selectByOrigin方法的sql -->
-	<select id="selectByOrigin"  parameterType="String" resultType="Specialty">
+	<select id="selectByOrigin" parameterType="String" resultType="Specialty">
 		<!-- 方法要执行的sql -->
 		select * from tbl_specialty where origin = #{origin}
 	</select>
-	
+
 	<!-- 查询总记录数 -->
-	<select id="selectCountByCondition" parameterType="SpecialtyVo" resultType="int">
-		select count(1) from tbl_specialty f 
+	<select id="selectCountByCondition" parameterType="SpecialtyVo"
+		resultType="int">
+		select count(*) from tbl_specialty f
 		<where>
+<<<<<<< HEAD
 			
 			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
 				 f.Origin = #{specialty.origin}
+=======
+
+			<if
+				test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				f.Origin = #{specialty.origin}
+>>>>>>> 570641716a2a4b4f2845b67905233d70bd9ad27f
 			</if>
 		</where>
 	</select>
-	
+
 	<!-- 查询分页 oracle -->
 	<select id="selectListByPage" parameterType="SpecialtyVo" resultType="Specialty">
-	select * from (select t.*,rownum rn from tbl_specialty t  
+		<!-- oracle实现sql -->
+		<!-- select * from (select t.*,rownum rn from tbl_specialty t  
 		<where>
 			 rownum &lt;= (#{currentPage} * #{pageCount})
 			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
@@ -51,19 +60,35 @@
 			</if>
 			) a
 		</where>
-			where  a.rn > (#{currentPage} - 1) * #{pageCount}
-	</select>
-	
-	<!-- 映射selectByFilmName方法的sql -->
-	<select id="selectByFilmName"  parameterType="SpecialtyVo" resultType="Specialty">
+			where  a.rn > (#{currentPage} - 1) * #{pageCount} -->
 		
+		<!-- mysql实现sql -->
+		select t.* from tbl_specialty t 
+		<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+			where t.origin = #{specialty.origin}
+		</if>
+		limit #{currentPage} , #{pageCount}
+
+	</select>
+
+	<!-- 映射selectByFilmName方法的sql -->
+	<select id="selectByFilmName" parameterType="SpecialtyVo"
+		resultType="Specialty">
+
 		select * from tbl_specialty f
 		<where>
+<<<<<<< HEAD
 			
 			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
 				 f.Origin = #{specialty.origin}
+=======
+
+			<if
+				test="specialty != null and specialty.origin != null and specialty.origin != ''">
+				f.Origin = #{specialty.origin}
+>>>>>>> 570641716a2a4b4f2845b67905233d70bd9ad27f
 			</if>
 		</where>
 	</select>
-	
+
 </mapper>

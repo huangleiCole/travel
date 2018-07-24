@@ -19,7 +19,7 @@
 	</select>
 	<insert id="insertUser" parameterType="User">
 		insert into travel_user
-		values(travel_user_id.nextval,#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{repassword,jdbcType=VARCHAR},#{identifiyingcode,jdbcType=VARCHAR},#{type,jdbcType=INTEGER})
+		values(0,#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{repassword,jdbcType=VARCHAR},#{identifiyingcode,jdbcType=VARCHAR},#{type,jdbcType=INTEGER})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">

@@ -40,7 +40,7 @@ public class EatLiveServiceImpl implements EatLiveService {
 		// 获取记录总数
 		int count = eatliveMapper.selectAllEat();
 		// 获取list集合
-		filmVo.setCurrentPage(currentPage);
+		filmVo.setCurrentPage((currentPage-1)*size);
 		filmVo.setPageCount(size);
 		List<EatLive> eatlives = eatliveMapper.selectListEatByPage(filmVo);
 		PageBean<EatLive> pageBean = new PageBean<>(count, size);
@@ -54,7 +54,7 @@ public class EatLiveServiceImpl implements EatLiveService {
 		// 获取记录总数
 		int count = eatliveMapper.selectAllLive();
 		// 获取list集合
-		filmVo.setCurrentPage(currentPage);
+		filmVo.setCurrentPage((currentPage-1)*size);
 		filmVo.setPageCount(size);
 		List<EatLive> eatlives = eatliveMapper.selectListLiveByPage(filmVo);
 		PageBean<EatLive> pageBean = new PageBean<>(count, size);
@@ -81,7 +81,7 @@ public class EatLiveServiceImpl implements EatLiveService {
 			count = eatliveMapper.selectAllCity(city);
 		}
 		// 获取list集合
-		filmVo.setCurrentPage(currentPage);
+		filmVo.setCurrentPage((currentPage-1)*size);
 		filmVo.setPageCount(size);
 		List<EatLive> eatlives = eatliveMapper.selectListByPage(filmVo);
 		PageBean<EatLive> pageBean = new PageBean<>(count, size);

@@ -1,3 +1,11 @@
 /target/
+<<<<<<< HEAD
 /.classpath
 /.project
+=======
+/.settings/
+/.classpath
+/.project
+src/main/resources/db.properties
+
+>>>>>>> 570641716a2a4b4f2845b67905233d70bd9ad27f
