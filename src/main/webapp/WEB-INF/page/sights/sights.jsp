@@ -308,22 +308,22 @@
 				<div class="pbox">
 					<div id="box" class="box">
 						<ul id="imgs">
-							<li><a href="#"><img src="${path }/images/bimg01.jpg"
+							<li><a href="#"><img src="${path }/images/周庄.jpg"
 									width="570" height="280"></a></li>
-							<li><a href="#"><img src="${path }/images/bimg01.jpg"
+							<li><a href="#"><img src="${path }/images/夫子庙.jpg"
 									width="570" height="280"></a></li>
-							<li><a href="#"><img src="${path }/images/bimg01.jpg"
+							<li><a href="#"><img src="${path }/images/瘦西湖.jpg"
 									width="570" height="280"></a></li>
-							<li><a href="#"><img src="${path }/images/bimg01.jpg"
+							<li><a href="#"><img src="${path }/images/苏州东方之门.jpg"
 									width="570" height="280"></a></li>
 						</ul>
 					</div>
 					<div class="cons">
 						<ul id="num" class="num">
-							<li class="act"><a href="#">夏阳湖皇冠假日酒店</a></li>
-							<li><a href="#">黄金水岸开业酬宾</a></li>
-							<li><a href="#"> 首尔公寓酒店</a></li>
-							<li style="width: 140px"><a href="#"> 新加坡文化酒店</a></li>
+							<li class="act"><a href="#">周庄</a></li>
+							<li><a href="#">夫子庙</a></li>
+							<li><a href="#">瘦西湖</a></li>
+							<li style="width: 140px"><a href="#">苏州东方之门</a></li>
 						</ul>
 					</div>
 				</div>

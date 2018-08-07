@@ -35,36 +35,28 @@
 		resultType="int">
 		select count(*) from tbl_specialty f
 		<where>
-<<<<<<< HEAD
-			
-			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
-				 f.Origin = #{specialty.origin}
-=======
 
 			<if
 				test="specialty != null and specialty.origin != null and specialty.origin != ''">
 				f.Origin = #{specialty.origin}
->>>>>>> 570641716a2a4b4f2845b67905233d70bd9ad27f
+
 			</if>
 		</where>
 	</select>
 
 	<!-- 查询分页 oracle -->
-	<select id="selectListByPage" parameterType="SpecialtyVo" resultType="Specialty">
+	<select id="selectListByPage" parameterType="SpecialtyVo"
+		resultType="Specialty">
 		<!-- oracle实现sql -->
-		<!-- select * from (select t.*,rownum rn from tbl_specialty t  
-		<where>
-			 rownum &lt;= (#{currentPage} * #{pageCount})
-			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
-				and t.Origin = #{specialty.origin} 
-			</if>
-			) a
-		</where>
-			where  a.rn > (#{currentPage} - 1) * #{pageCount} -->
-		
+		<!-- select * from (select t.*,rownum rn from tbl_specialty t <where> rownum 
+			&lt;= (#{currentPage} * #{pageCount}) <if test="specialty != null and specialty.origin 
+			!= null and specialty.origin != ''"> and t.Origin = #{specialty.origin} </if> 
+			) a </where> where a.rn > (#{currentPage} - 1) * #{pageCount} -->
+
 		<!-- mysql实现sql -->
-		select t.* from tbl_specialty t 
-		<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
+		select t.* from tbl_specialty t
+		<if
+			test="specialty != null and specialty.origin != null and specialty.origin != ''">
 			where t.origin = #{specialty.origin}
 		</if>
 		limit #{currentPage} , #{pageCount}
@@ -77,16 +69,12 @@
 
 		select * from tbl_specialty f
 		<where>
-<<<<<<< HEAD
-			
-			<if test="specialty != null and specialty.origin != null and specialty.origin != ''">
-				 f.Origin = #{specialty.origin}
-=======
 
 			<if
 				test="specialty != null and specialty.origin != null and specialty.origin != ''">
 				f.Origin = #{specialty.origin}
->>>>>>> 570641716a2a4b4f2845b67905233d70bd9ad27f
+
+
 			</if>
 		</where>
 	</select>
