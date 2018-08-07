@@ -327,7 +327,7 @@ SET FOREIGN_KEY_CHECKS=0;
 CREATE TABLE `tbl_specialtyorder` (
   `id` int(8) NOT NULL AUTO_INCREMENT,
   `spename` varchar(255) DEFAULT NULL,
-  `specialtyorderid` int(16) DEFAULT NULL,
+  `specialtyorderid` bigint(50) DEFAULT NULL,
   `radio` varchar(255) DEFAULT NULL,
   `preferentialprice` decimal(8,2) DEFAULT NULL,
   `integral` int(8) DEFAULT NULL,
